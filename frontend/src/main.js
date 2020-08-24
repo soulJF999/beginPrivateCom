@@ -8,10 +8,12 @@ import 'moment/locale/zh-cn'
 import 'normalize.css/normalize.css'
 import 'es6-promise/auto'
 import 'promise.prototype.finally/auto'
+import ElementUI from 'element-ui'
 
 moment.locale('zh-cn')
 
 Vue.config.productionTip = false
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 /* eslint-disable semi,no-unused-vars,semi-spacing,no-useless-escape,one-var */
