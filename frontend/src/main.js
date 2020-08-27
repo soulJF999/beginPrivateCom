@@ -9,11 +9,13 @@ import 'normalize.css/normalize.css'
 import 'es6-promise/auto'
 import 'promise.prototype.finally/auto'
 import ElementUI from 'element-ui'
+import agent from './httpAgent'
 
 moment.locale('zh-cn')
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.prototype.$http = agent
 
 /* eslint-disable no-new */
 /* eslint-disable semi,no-unused-vars,semi-spacing,no-useless-escape,one-var */
