@@ -19,7 +19,7 @@ export default {
   methods: {
     testServer () {
       this.$http.post('/api/home/getMockData').then(res => {
-        if (res.code === 0) {
+        if (res.data.code === 0) {
           console.log('hello')
         }
       }).catch(err => {

@@ -66,7 +66,6 @@ const initApiRoutes = (router) => {
 }
 
 const initErrorRoutes = (router) => {
-  logger.info('router', router)
   // Set api and dist that not exist as 404
   router.all(/^\/api(?:\/|$)|(^\/dist(?:\/|$))/, ctx => {
     ctx.body = 'Not Found'
