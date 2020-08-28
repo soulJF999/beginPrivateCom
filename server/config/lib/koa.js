@@ -60,16 +60,19 @@ const initPassport = (app) => {
 }
 
 const initApiRoutes = (router) => {
+  config.files.server.routes.forEach((routePath) => {
+    require(path.resolve(routePath))(router)
+  })
+}
+
+const initErrorRoutes = (router) => {
+  logger.info('router', router)
   // Set api and dist that not exist as 404
   router.all(/^\/api(?:\/|$)|(^\/dist(?:\/|$))/, ctx => {
     ctx.body = 'Not Found'
     ctx.type = 'text'
     ctx.status = 404
   })
-}
-
-const initErrorRoutes = (router) => {
-  router.all
 }
 
 module.exports.init = () => {
@@ -84,8 +87,8 @@ module.exports.init = () => {
   initSecures(app)
   initParsers(app)
   initPassport(app)
-  initApiRoutes(app)
-  initErrorRoutes(app)
+  initApiRoutes(router)
+  initErrorRoutes(router)
   app
     .use(router.routes())
     .use(router.allowedMethods())

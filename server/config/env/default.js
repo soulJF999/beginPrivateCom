@@ -8,22 +8,24 @@ module.exports = {
   db: {
     promise: global.Promise
   },
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 8000,
   host: process.env.HOST || '0.0.0.0',
   // DOMAIN config should be set to the fully qualified application accessible
   // URL. For example: https://www.myapp.com (including port if required).
   domain: process.env.DOMAIN,
   // Session Cookie settings
-  sessionCookie: {
-    // session expiration is set by default to 24 hours
-    maxAge: 24 * (60 * 60 * 1000),
-    // httpOnly flag makes sure the cookie is only accessed
-    // through the HTTP protocol and not JS/browser
-    httpOnly: true,
-    // secure cookie should be turned to true to provide additional
-    // layer of security so that the cookie is set only when working
-    // in HTTPS mode.
-    secure: false
+  sessionOptions: {
+    key: 'kvmn', /** (string) cookie key (default is koa:sess) */
+    maxAge: 1000 * 60 * 60 * 24, /** (number) maxAge in ms (default is 1 days) */
+    overwrite: true, /** (boolean) can overwrite or not (default true) */
+    httpOnly: true, /** (boolean) httpOnly or not (default true) */
+    signed: true /** (boolean) signed or not (default true) */
+    /**
+     * You can store the session content in external stores(redis, mongodb or other DBs) by pass options.store with three methods(need to be async function):
+     * - get(key): get session object by key
+     * - set(key, sess, maxAge): set session object for key, with a maxAge (in ms)
+     * - destroy(key): destroy session for key
+     */
   },
   // sessionSecret should be changed for security measures and concerns
   sessionSecret: process.env.SESSION_SECRET || 'MEAN',
